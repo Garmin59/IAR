@@ -1,0 +1,279 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V8.20.2.14835/W32 for ARM       05/Jan/2018  18:41:09
+# Copyright 1999-2017 IAR Systems AB.
+#
+#    Cpu mode     =  thumb
+#    Endian       =  little
+#    Source file  =  
+#        D:\Ilya\Projects\332 WS2811 hew year light\IAR\project\main.c
+#    Command line =  
+#        -f C:\Users\75BD~1\AppData\Local\Temp\EW2296.tmp
+#        ("D:\Ilya\Projects\332 WS2811 hew year light\IAR\project\main.c" -D
+#        STM32F0XX -D STM32F051 --preprocess=c "D:\Ilya\Projects\332 WS2811 hew
+#        year light\IAR\Debug\List" -lC "D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\Debug\List" -o "D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\Debug\Obj" --no_cse --no_unroll --no_inline --no_code_motion
+#        --no_tbaa --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M0 -e --fpu=None --dlib_config "C:\Program Files
+#        (x86)\IAR Systems\Embedded Workbench
+#        8.0\arm\INC\c\DLib_Config_Normal.h" -I "D:\Ilya\Projects\332 WS2811
+#        hew year light\IAR\system\" -I "D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\project\" -I "D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\CMSIS\" -I "D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\CMSIS\inc\" -I "D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\" -Ol --use_c++_inline --relaxed_fp --source_encoding locale
+#        --text_out locale)
+#    Locale       =  Russian_RUS.1251
+#    List file    =  
+#        D:\Ilya\Projects\332 WS2811 hew year light\IAR\Debug\List\main.lst
+#    Object file  =  
+#        D:\Ilya\Projects\332 WS2811 hew year light\IAR\Debug\Obj\main.o
+#
+###############################################################################
+
+D:\Ilya\Projects\332 WS2811 hew year light\IAR\project\main.c
+      1          /**
+      2            ******************************************************************************
+      3            * @file    main.c
+      4            * @author  MCD Application Team
+      5            * @version V1.0.0
+      6            * @date    23-March-2012
+      7            * @brief   Main program body
+      8            ******************************************************************************
+      9            * @attention
+     10            *
+     11            * <h2><center>&copy; COPYRIGHT 2012 STMicroelectronics</center></h2>
+     12            *
+     13            * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
+     14            * You may not use this file except in compliance with the License.
+     15            * You may obtain a copy of the License at:
+     16            *
+     17            *        http://www.st.com/software_license_agreement_liberty_v2
+     18            *
+     19            * Unless required by applicable law or agreed to in writing, software
+     20            * distributed under the License is distributed on an "AS IS" BASIS,
+     21            * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     22            * See the License for the specific language governing permissions and
+     23            * limitations under the License.
+     24            *
+     25            ******************************************************************************
+     26            */
+     27          
+     28          
+     29          /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+     30          /* Includes ------------------------------------------------------------------*/
+     31          #include  <stdint.h>
+     32          #include  <string.h>
+     33          #include  <stdio.h>
+     34          
+     35          
+     36          #include	"stm32f0xx.h"				// определени€ регистров и битовых переменных
+     37          #include	"stm32f051_it.h"
+
+   \                                 In section .text, align 2, keep-with-next
+   \   static __interwork __softfp uint32_t system_time(void)
+   \                     system_time: (+1)
+   \   00000000   0x....             LDR      R0,??DataTable0
+   \   00000002   0x6800             LDR      R0,[R0, #+0]
+   \   00000004   0x4770             BX       LR               ;; return
+
+   \                                 In section .text, align 2, keep-with-next
+   \   static __interwork __softfp void timer_reset(uint32_t *)
+   \                     timer_reset: (+1)
+   \   00000000   0xB510             PUSH     {R4,LR}
+   \   00000002   0x0004             MOVS     R4,R0
+   \   00000004   0x.... 0x....      BL       system_time
+   \   00000008   0x6020             STR      R0,[R4, #+0]
+   \   0000000A   0xBD10             POP      {R4,PC}          ;; return
+
+   \                                 In section .text, align 2, keep-with-next
+   \   static __interwork __softfp bool timer_end(uint32_t *, uint32_t)
+   \                     timer_end: (+1)
+   \   00000000   0xB538             PUSH     {R3-R5,LR}
+   \   00000002   0x0005             MOVS     R5,R0
+   \   00000004   0x000C             MOVS     R4,R1
+   \   00000006   0x.... 0x....      BL       system_time
+   \   0000000A   0x6829             LDR      R1,[R5, #+0]
+   \   0000000C   0x1A40             SUBS     R0,R0,R1
+   \   0000000E   0x42A0             CMP      R0,R4
+   \   00000010   0xD301             BCC      ??timer_end_0
+   \   00000012   0x2001             MOVS     R0,#+1
+   \   00000014   0xE000             B        ??timer_end_1
+   \                     ??timer_end_0: (+1)
+   \   00000016   0x2000             MOVS     R0,#+0
+   \                     ??timer_end_1: (+1)
+   \   00000018   0xB2C0             UXTB     R0,R0
+   \   0000001A   0xBD32             POP      {R1,R4,R5,PC}    ;; return
+     38          #include	"system_stm32f0xx.h"
+     39          #include	"stm32f0xx_conf.h"			// конфигураци€ используемых функций CMSIS
+     40          #include	"core_cm0.h"				// определени€ инлайнов
+     41          #include 	"effects.h"
+     42          #include  "main.h"
+     43          #include	"global.h"					// глобальные переменные
+     44          #include	"inits.h"					// константы настройки и функции инициализации
+     45          #include	"ws2811.h"
+     46          #include 	"messages.h"
+     47          
+     48          /* Private typedef -----------------------------------------------------------*/
+     49          /* Private define ------------------------------------------------------------*/
+     50          /* Private macro -------------------------------------------------------------*/
+     51          /* Private variables ---------------------------------------------------------*/
+     52          
+     53          
+
+   \                                 In section .bss, align 4
+     54          Global	g;	// объ€вл€етс€ место дл€ структуры g как Global
+   \                     g:
+   \   00000000                      DS8 2552
+     55          
+     56          /* Private function prototypes -----------------------------------------------*/
+     57          void systick_delay (u32 time);
+     58          /* Private functions ---------------------------------------------------------*/
+     59          
+
+   \                                 In section .text, align 2, keep-with-next
+     60          int main(void)
+     61          {
+   \                     main: (+1)
+   \   00000000   0xB580             PUSH     {R7,LR}
+     62            system_clocks_init ();
+   \   00000002   0x.... 0x....      BL       system_clocks_init
+     63          
+     64            init_ws2811_pin ();
+   \   00000006   0x.... 0x....      BL       init_ws2811_pin
+     65            init_messages ();
+   \   0000000A   0x.... 0x....      BL       init_messages
+     66            
+     67            init_layers ();
+   \   0000000E   0x.... 0x....      BL       init_layers
+     68            
+     69            while (1)
+     70            {
+     71              led_buffer_proc ();
+   \                     ??main_0: (+1)
+   \   00000012   0x.... 0x....      BL       led_buffer_proc
+     72              effects_proc ();
+   \   00000016   0x.... 0x....      BL       effects_proc
+     73              process_messages ();
+   \   0000001A   0x.... 0x....      BL       process_messages
+   \   0000001E   0xE7F8             B        ??main_0
+     74            }
+     75          //  return (0);
+     76          }
+     77          
+     78          
+     79          
+     80          #ifdef USE_FULL_ASSERT
+     81          /**
+     82            * @brief  Reports the name of the source file and the source line number
+     83            *         where the assert_param error has occurred.
+     84            * @param  file: pointer to the source file name
+     85            * @param  line: assert_param error line source number
+     86            * @retval None
+     87            */
+
+   \                                 In section .text, align 2, keep-with-next
+     88          void assert_failed(uint8_t* file, uint32_t line)
+     89          { 
+   \                     assert_failed: (+1)
+   \   00000000   0xB580             PUSH     {R7,LR}
+     90            /* User can add his own implementation to report the file name and line number,
+     91               ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+     92          
+     93            /* Infinite loop */
+     94          
+     95            while (1)
+     96            {
+     97              systick_delay (100);
+   \                     ??assert_failed_0: (+1)
+   \   00000002   0x2064             MOVS     R0,#+100
+   \   00000004   0x.... 0x....      BL       systick_delay
+   \   00000008   0xE7FB             B        ??assert_failed_0
+     98            }
+     99          }
+    100          #endif
+    101          
+    102          /**
+    103            * @brief  Add a delay using the Systick
+    104            * @param  nTime Delay in milliseconds.
+    105            * @retval None
+    106            */
+
+   \                                 In section .text, align 2, keep-with-next
+    107          void systick_delay (u32 time)
+    108          {
+   \                     systick_delay: (+1)
+   \   00000000   0xB51C             PUSH     {R2-R4,LR}
+   \   00000002   0x0004             MOVS     R4,R0
+    109            u32 start_time;
+    110            
+    111            timer_reset (&start_time);
+   \   00000004   0x4668             MOV      R0,SP
+   \   00000006   0x.... 0x....      BL       timer_reset
+    112            while (timer_end (&start_time, time))
+   \                     ??systick_delay_0: (+1)
+   \   0000000A   0x0021             MOVS     R1,R4
+   \   0000000C   0x4668             MOV      R0,SP
+   \   0000000E   0x.... 0x....      BL       timer_end
+   \   00000012   0x2800             CMP      R0,#+0
+   \   00000014   0xD1F9             BNE      ??systick_delay_0
+    113            {
+    114            }
+    115            
+    116              
+    117          }
+   \   00000016   0xBD13             POP      {R0,R1,R4,PC}    ;; return
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable0:
+   \   00000000   0x........         DC32     system_timer
+    118          
+    119          /********END OF FILE****/
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       8   assert_failed
+         8   -> systick_delay
+       8   main
+         8   -> effects_proc
+         8   -> init_layers
+         8   -> init_messages
+         8   -> init_ws2811_pin
+         8   -> led_buffer_proc
+         8   -> process_messages
+         8   -> system_clocks_init
+       0   system_time
+      16   systick_delay
+        16   -> timer_end
+        16   -> timer_reset
+      16   timer_end
+        16   -> system_time
+       8   timer_reset
+         8   -> system_time
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable0
+      10  assert_failed
+    2552  g
+      32  main
+       6  system_time
+      24  systick_delay
+      28  timer_end
+      12  timer_reset
+
+ 
+ 2 552 bytes in section .bss
+   116 bytes in section .text
+ 
+   116 bytes of CODE memory
+ 2 552 bytes of DATA memory
+
+Errors: none
+Warnings: none

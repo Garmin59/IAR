@@ -1,0 +1,200 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V8.20.2.14835/W32 for ARM       27/Dec/2017  21:15:19
+# Copyright 1999-2017 IAR Systems AB.
+#
+#    Cpu mode     =  thumb
+#    Endian       =  little
+#    Source file  =  
+#        D:\Ilya\Projects\332 WS2811 hew year light\IAR\project\messages.c
+#    Command line =  
+#        -f C:\Users\75BD~1\AppData\Local\Temp\EWAD8E.tmp
+#        ("D:\Ilya\Projects\332 WS2811 hew year light\IAR\project\messages.c"
+#        -D STM32F0XX -D STM32F051 --preprocess=c "D:\Ilya\Projects\332 WS2811
+#        hew year light\IAR\Debug\List" -lC "D:\Ilya\Projects\332 WS2811 hew
+#        year light\IAR\Debug\List" -o "D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\Debug\Obj" --no_cse --no_unroll --no_inline --no_code_motion
+#        --no_tbaa --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M0 -e --fpu=None --dlib_config "C:\Program Files
+#        (x86)\IAR Systems\Embedded Workbench
+#        8.0\arm\INC\c\DLib_Config_Normal.h" -I "D:\Ilya\Projects\332 WS2811
+#        hew year light\IAR\system\" -I "D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\project\" -I "D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\CMSIS\" -I "D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\CMSIS\inc\" -I "D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\" -Ol --use_c++_inline --relaxed_fp --source_encoding locale
+#        --text_out locale)
+#    Locale       =  Russian_RUS.1251
+#    List file    =  
+#        D:\Ilya\Projects\332 WS2811 hew year light\IAR\Debug\List\messages.lst
+#    Object file  =  
+#        D:\Ilya\Projects\332 WS2811 hew year light\IAR\Debug\Obj\messages.o
+#
+###############################################################################
+
+D:\Ilya\Projects\332 WS2811 hew year light\IAR\project\messages.c
+      1          // файл messages.c
+      2          
+      3          #include	"stm32f0xx.h"				// определения регистров и битовых переменных
+      4          #include 	"messages.h"
+      5          
+
+   \                                 In section .noinit, align 4
+      6          __no_init	mess_state  p[MAX_MESSAGES];
+   \                     p:
+   \   00000000                      DS8 4
+      7          
+      8          /******************************************************************************
+      9          * Программа инициализации массива сообщений
+     10          ******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+     11          void 	init_messages	(void)
+     12          {
+   \                     init_messages: (+1)
+   \   00000000   0xB500             PUSH     {LR}
+     13          	u8	i;
+     14          	for (i = 0; i < MAX_MESSAGES; i++)
+   \   00000002   0x2000             MOVS     R0,#+0
+   \   00000004   0xE005             B        ??init_messages_0
+     15          	{
+     16          		p[i] = NO_MESSAGE;
+   \                     ??init_messages_1: (+1)
+   \   00000006   0x2100             MOVS     R1,#+0
+   \   00000008   0x....             LDR      R2,??DataTable1
+   \   0000000A   0x0003             MOVS     R3,R0
+   \   0000000C   0xB2DB             UXTB     R3,R3
+   \   0000000E   0x54D1             STRB     R1,[R2, R3]
+     17          	}
+   \   00000010   0x1C40             ADDS     R0,R0,#+1
+   \                     ??init_messages_0: (+1)
+   \   00000012   0x0001             MOVS     R1,R0
+   \   00000014   0xB2C9             UXTB     R1,R1
+   \   00000016   0x2903             CMP      R1,#+3
+   \   00000018   0xDBF5             BLT      ??init_messages_1
+     18          }
+   \   0000001A   0xBD00             POP      {PC}             ;; return
+     19          
+     20          /******************************************************************************
+     21          * Программа передачи сообщения
+     22          * вход - номер сообщения
+     23          * дополнительные параметры передаются через глобальную структуру данных
+     24          * выход - установка флага сообщения
+     25          ******************************************************************************/
+     26          /*void send_message (u8 mes)
+     27          {
+     28          	if (p[mes] != MESSAGE_ACTIVE)
+     29          	{
+     30          		p[mes] = MESSAGE_SET;
+     31          	}
+     32          }*/
+     33          
+     34          /******************************************************************************
+     35          * Программа получения сообщения
+     36          * вход - номер сообщения
+     37          * выход - состояние сообщения
+     38          ******************************************************************************/
+     39          /*bool get_message (u8 mes)
+     40          {
+     41          	if (p[mes] == MESSAGE_ACTIVE)
+     42          	{
+     43          		return TRUE;
+     44          	}
+     45          	return FALSE;
+     46          }*/
+     47          
+     48          
+     49          /******************************************************************************
+     50          * Программа обработки запросов на сообщения
+     51          * вход - массив messages
+     52          * выход - массив messages
+     53          * Если сообщение активировано, значит все автоматы его отработали - сбросить сообщение
+     54          * Если сообщение выставлено - сделать его активным для следующего цикла
+     55          ******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+     56          void process_messages (void)
+     57          {
+   \                     process_messages: (+1)
+   \   00000000   0xB500             PUSH     {LR}
+     58          	u8	i;
+     59          	for (i = 0; i < MAX_MESSAGES; i++)
+   \   00000002   0x2000             MOVS     R0,#+0
+   \   00000004   0xE016             B        ??process_messages_0
+     60          	{
+     61          		if (p[i] >= MESSAGE_ACTIVE)
+   \                     ??process_messages_1: (+1)
+   \   00000006   0x....             LDR      R1,??DataTable1
+   \   00000008   0x0002             MOVS     R2,R0
+   \   0000000A   0xB2D2             UXTB     R2,R2
+   \   0000000C   0x5C89             LDRB     R1,[R1, R2]
+   \   0000000E   0x2902             CMP      R1,#+2
+   \   00000010   0xDB04             BLT      ??process_messages_2
+     62          		{
+     63          			p[i] = NO_MESSAGE;
+   \   00000012   0x2100             MOVS     R1,#+0
+   \   00000014   0x....             LDR      R2,??DataTable1
+   \   00000016   0x0003             MOVS     R3,R0
+   \   00000018   0xB2DB             UXTB     R3,R3
+   \   0000001A   0x54D1             STRB     R1,[R2, R3]
+     64          		}		
+     65          		if (p[i] == MESSAGE_SET)
+   \                     ??process_messages_2: (+1)
+   \   0000001C   0x....             LDR      R1,??DataTable1
+   \   0000001E   0x0002             MOVS     R2,R0
+   \   00000020   0xB2D2             UXTB     R2,R2
+   \   00000022   0x5C89             LDRB     R1,[R1, R2]
+   \   00000024   0x2901             CMP      R1,#+1
+   \   00000026   0xD104             BNE      ??process_messages_3
+     66          		{
+     67          			p[i] = MESSAGE_ACTIVE;
+   \   00000028   0x2102             MOVS     R1,#+2
+   \   0000002A   0x....             LDR      R2,??DataTable1
+   \   0000002C   0x0003             MOVS     R3,R0
+   \   0000002E   0xB2DB             UXTB     R3,R3
+   \   00000030   0x54D1             STRB     R1,[R2, R3]
+     68          		}
+     69          	}
+   \                     ??process_messages_3: (+1)
+   \   00000032   0x1C40             ADDS     R0,R0,#+1
+   \                     ??process_messages_0: (+1)
+   \   00000034   0x0001             MOVS     R1,R0
+   \   00000036   0xB2C9             UXTB     R1,R1
+   \   00000038   0x2903             CMP      R1,#+3
+   \   0000003A   0xDBE4             BLT      ??process_messages_1
+     70          }
+   \   0000003C   0xBD00             POP      {PC}             ;; return
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1:
+   \   00000000   0x........         DC32     p
+     71          
+     72          
+     73          
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       4   init_messages
+       4   process_messages
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable1
+      28  init_messages
+       4  p
+      62  process_messages
+
+ 
+  4 bytes in section .noinit
+ 94 bytes in section .text
+ 
+ 94 bytes of CODE memory
+  4 bytes of DATA memory
+
+Errors: none
+Warnings: none

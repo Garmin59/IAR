@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<userOverrides>
+    <override>
+        <path>D:\Ilya\Projects\332 WS2811 hew year light\IAR\Debug\List\main.lst</path>
+        <encoding>System</encoding>
+    </override>
+    <override>
+        <path>D:\Ilya\Projects\332 WS2811 hew year light\IAR\project\main.c</path>
+        <encoding>Win-1251</encoding>
+    </override>
+</userOverrides>

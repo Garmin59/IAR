@@ -1,0 +1,524 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V8.20.2.14835/W32 for ARM       27/Dec/2017  21:15:19
+# Copyright 1999-2017 IAR Systems AB.
+#
+#    Cpu mode     =  thumb
+#    Endian       =  little
+#    Source file  =  
+#        D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\system\stm32f051_it.с.c
+#    Command line =  
+#        -f C:\Users\75BD~1\AppData\Local\Temp\EWAE2B.tmp
+#        ("D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\system\stm32f051_it.с.c" -D STM32F0XX -D STM32F051
+#        --preprocess=c "D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\Debug\List" -lC "D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\Debug\List" -o "D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\Debug\Obj" --no_cse --no_unroll --no_inline --no_code_motion
+#        --no_tbaa --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M0 -e --fpu=None --dlib_config "C:\Program Files
+#        (x86)\IAR Systems\Embedded Workbench
+#        8.0\arm\INC\c\DLib_Config_Normal.h" -I "D:\Ilya\Projects\332 WS2811
+#        hew year light\IAR\system\" -I "D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\project\" -I "D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\CMSIS\" -I "D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\CMSIS\inc\" -I "D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\" -Ol --use_c++_inline --relaxed_fp --source_encoding locale
+#        --text_out locale)
+#    Locale       =  Russian_RUS.1251
+#    List file    =  
+#        D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\Debug\List\stm32f051_it.с.lst
+#    Object file  =  
+#        D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\Debug\Obj\stm32f051_it.с.o
+#
+###############################################################################
+
+D:\Ilya\Projects\332 WS2811 hew year light\IAR\system\stm32f051_it.с.c
+      1          /******************** (C) COPYRIGHT 2012 STMicroelectronics ********************
+      2          * File Name          : stm32f051_it.с
+      3          * Author             : Ilya Petrukhin
+      4          *******************************************************************************/
+      5          #include	<stdint.h>
+      6          #include	"stm32f051_it.h"
+      7          
+
+   \                                 In section .bss, align 4
+      8          volatile uint32_t system_timer = 0;	// системный счётчик времени в мс.
+   \                     system_timer:
+   \   00000000                      DS8 4
+      9          
+     10          /* Define to prevent recursive inclusion -------------------------------------*/
+     11          // Enable the IAR extensions for this source file.
+     12          #pragma language=extended
+     13          #pragma segment="CSTACK"
+     14          
+     15          // Forward declaration of the default fault handlers.
+     16          void  reset_isr           (void); // The reset handler
+     17          void  nm_isr              (void); // NMI Handler
+     18          void  fault_isr           (void); // Hard Fault Handler
+     19          void  int_default_handler (void); // Reserved
+     20          void  svc_handler         (void); // SVCall Handler
+     21          void  pend_sv_handler     (void); // PendSV Handler
+     22          void  systick_handler     (void); // SysTick Handler
+     23          
+     24          // External Interrupts
+
+   \                                 In section .text, align 2, keep-with-next
+   \                     int_default_handler: (+1)
+     25          __weak void WWDG_IRQHandler                 (void);
+   \                     WWDG_IRQHandler: (+1)
+     26          __weak void PVD_IRQHandler                  (void);
+   \                     PVD_IRQHandler: (+1)
+     27          __weak void RTC_IRQHandler                  (void);
+   \                     RTC_IRQHandler: (+1)
+     28          __weak void FLASH_IRQHandler                (void);
+   \                     FLASH_IRQHandler: (+1)
+     29          __weak void RCC_IRQHandler                  (void);
+   \                     RCC_IRQHandler: (+1)
+     30          __weak void EXTI0_1_IRQHandler              (void);
+   \                     EXTI0_1_IRQHandler: (+1)
+     31          __weak void EXTI2_3_IRQHandler              (void);
+   \                     EXTI2_3_IRQHandler: (+1)
+     32          __weak void EXTI4_15_IRQHandler             (void);
+   \                     EXTI4_15_IRQHandler: (+1)
+     33          __weak void TS_IRQHandler                   (void);
+   \                     TS_IRQHandler: (+1)
+     34          __weak void DMA1_Channel1_IRQHandler        (void);
+   \                     DMA1_Channel1_IRQHandler: (+1)
+     35          __weak void DMA1_Channel2_3_IRQHandler      (void);
+   \                     DMA1_Channel2_3_IRQHandler: (+1)
+     36          __weak void DMA1_Channel4_5_IRQHandler      (void);
+   \                     DMA1_Channel4_5_IRQHandler: (+1)
+     37          __weak void ADC1_COMP_IRQHandler            (void);
+   \                     ADC1_COMP_IRQHandler: (+1)
+     38          __weak void TIM1_BRK_UP_TRG_COM_IRQHandler  (void);
+   \                     TIM1_BRK_UP_TRG_COM_IRQHandler: (+1)
+     39          __weak void TIM1_CC_IRQHandler              (void);
+   \                     TIM1_CC_IRQHandler: (+1)
+     40          __weak void TIM2_IRQHandler                 (void);
+   \                     TIM2_IRQHandler: (+1)
+     41          __weak void TIM3_IRQHandler                 (void);
+   \                     TIM3_IRQHandler: (+1)
+     42          __weak void TIM6_DAC_IRQHandler             (void);
+   \                     TIM6_DAC_IRQHandler: (+1)
+     43          __weak void TIM14_IRQHandler                (void);
+   \                     TIM14_IRQHandler: (+1)
+     44          __weak void TIM15_IRQHandler                (void);
+   \                     TIM15_IRQHandler: (+1)
+     45          __weak void TIM16_IRQHandler                (void);
+   \                     TIM16_IRQHandler: (+1)
+     46          __weak void TIM17_IRQHandler                (void);
+   \                     TIM17_IRQHandler: (+1)
+     47          __weak void I2C1_IRQHandler                 (void);
+   \                     I2C1_IRQHandler: (+1)
+     48          __weak void I2C2_IRQHandler                 (void);
+   \                     I2C2_IRQHandler: (+1)
+     49          __weak void SPI1_IRQHandler                 (void);
+   \                     SPI1_IRQHandler: (+1)
+     50          __weak void SPI2_IRQHandler                 (void);
+   \                     SPI2_IRQHandler: (+1)
+     51          __weak void USART1_IRQHandler               (void);
+   \                     USART1_IRQHandler: (+1)
+     52          __weak void USART2_IRQHandler               (void);
+   \                     USART2_IRQHandler: (+1)
+     53          __weak void CEC_IRQHandler                  (void);
+   \                     CEC_IRQHandler: (+1)
+   \   00000000   0xB500             PUSH     {LR}
+   \                     ??int_default_handler_0: (+1)
+   \   00000002   0xE7FE             B        ??int_default_handler_0
+     54          
+     55          
+     56          // The entry point for the application startup code.
+     57          extern void __iar_program_start(void);
+     58          //extern void EXTI_Line0_IntHandler(void);
+     59          //extern void EXTI_Line6_IntHandler(void);
+     60          // A union that describes the entries of the vector table.  The union is needed
+     61          // since the first entry is the stack pointer and the remainder are function
+     62          // pointers.
+     63          typedef union
+     64          {
+     65              void (*pfnHandler)(void);
+     66              void * ulPtr;
+     67          }
+     68          uVectorEntry;
+     69          
+     70          // The vector table.  Note that the proper constructs must be placed on this to
+     71          // ensure that it ends up at physical address 0x0000.0000.
+
+   \                                 In section .intvec, align 4, root
+     72          __root const uVectorEntry __vector_table[] @ ".intvec" =
+   \                     __vector_table:
+   \   00000000   0x........         DC32 SFE(CSTACK), reset_isr, nm_isr, fault_isr, int_default_handler
+   \              0x........   
+   \              0x........   
+   \              0x........   
+   \              0x........   
+   \   00000014   0x........         DC32 int_default_handler, int_default_handler, int_default_handler
+   \              0x........   
+   \              0x........   
+   \   00000020   0x........         DC32 int_default_handler, int_default_handler, int_default_handler
+   \              0x........   
+   \              0x........   
+   \   0000002C   0x........         DC32 svc_handler, int_default_handler, int_default_handler
+   \              0x........   
+   \              0x........   
+   \   00000038   0x........         DC32 pend_sv_handler, systick_handler, WWDG_IRQHandler, PVD_IRQHandler
+   \              0x........   
+   \              0x........   
+   \              0x........   
+   \   00000048   0x........         DC32 RTC_IRQHandler, FLASH_IRQHandler, RCC_IRQHandler
+   \              0x........   
+   \              0x........   
+   \   00000054   0x........         DC32 EXTI0_1_IRQHandler, EXTI2_3_IRQHandler, EXTI4_15_IRQHandler
+   \              0x........   
+   \              0x........   
+   \   00000060   0x........         DC32 TS_IRQHandler, DMA1_Channel1_IRQHandler
+   \              0x........   
+   \   00000068   0x........         DC32 DMA1_Channel2_3_IRQHandler, DMA1_Channel4_5_IRQHandler
+   \              0x........   
+   \   00000070   0x........         DC32 ADC1_COMP_IRQHandler, TIM1_BRK_UP_TRG_COM_IRQHandler
+   \              0x........   
+   \   00000078   0x........         DC32 TIM1_CC_IRQHandler, TIM2_IRQHandler, TIM3_IRQHandler
+   \              0x........   
+   \              0x........   
+   \   00000084   0x........         DC32 TIM6_DAC_IRQHandler, int_default_handler, TIM14_IRQHandler
+   \              0x........   
+   \              0x........   
+   \   00000090   0x........         DC32 TIM15_IRQHandler, TIM16_IRQHandler, TIM17_IRQHandler
+   \              0x........   
+   \              0x........   
+   \   0000009C   0x........         DC32 I2C1_IRQHandler, I2C2_IRQHandler, SPI1_IRQHandler, SPI2_IRQHandler
+   \              0x........   
+   \              0x........   
+   \              0x........   
+   \   000000AC   0x........         DC32 USART1_IRQHandler, USART2_IRQHandler, int_default_handler
+   \              0x........   
+   \              0x........   
+   \   000000B8   0x........         DC32 CEC_IRQHandler, int_default_handler
+   \              0x........   
+     73          {
+     74              { .ulPtr = __sfe( "CSTACK" ) }, // The initial stack pointer                                    
+     75              reset_isr,                      // The reset handler
+     76              nm_isr ,                         // NMI Handler
+     77              fault_isr,                       // Hard Fault Handler
+     78              int_default_handler,             // Reserved
+     79              int_default_handler,             // Reserved
+     80              int_default_handler,             // Reserved
+     81              int_default_handler,             // Reserved
+     82              int_default_handler,             // Reserved
+     83              int_default_handler,             // Reserved
+     84              int_default_handler,             // Reserved
+     85              svc_handler,                     // SVCall Handler
+     86              int_default_handler,             // Reserved
+     87              int_default_handler,             // Reserved
+     88              pend_sv_handler,                 // PendSV Handler
+     89              systick_handler,                 // SysTick Handler
+     90          
+     91              // External Interrupts
+     92              WWDG_IRQHandler,                 // Window Watchdog
+     93              PVD_IRQHandler,                  // PVD through EXTI Line detect
+     94              RTC_IRQHandler,                  // RTC through EXTI Line
+     95              FLASH_IRQHandler,                // FLASH
+     96              RCC_IRQHandler,                  // RCC
+     97              EXTI0_1_IRQHandler,              // EXTI Line 0 and 1
+     98              EXTI2_3_IRQHandler,              // EXTI Line 2 and 3
+     99              EXTI4_15_IRQHandler,             // EXTI Line 4 to 15
+    100              TS_IRQHandler,                   // TS
+    101              DMA1_Channel1_IRQHandler,        // DMA1 Channel 1
+    102              DMA1_Channel2_3_IRQHandler,      // DMA1 Channel 2 and Channel 3
+    103              DMA1_Channel4_5_IRQHandler,      // DMA1 Channel 4 and Channel 5
+    104              ADC1_COMP_IRQHandler,            // ADC1, COMP1 and COMP2 
+    105              TIM1_BRK_UP_TRG_COM_IRQHandler,  // TIM1 Break, Update, Trigger and Commutation
+    106              TIM1_CC_IRQHandler,              // TIM1 Capture Compare
+    107              TIM2_IRQHandler,                 // TIM2
+    108              TIM3_IRQHandler,                 // TIM3
+    109              TIM6_DAC_IRQHandler,             // TIM6 and DAC
+    110              int_default_handler,             // Reserved
+    111              TIM14_IRQHandler,                // TIM14
+    112              TIM15_IRQHandler,                // TIM15
+    113              TIM16_IRQHandler,                // TIM16
+    114              TIM17_IRQHandler,                // TIM17
+    115              I2C1_IRQHandler,                 // I2C1
+    116              I2C2_IRQHandler,                 // I2C2
+    117              SPI1_IRQHandler,                 // SPI1
+    118              SPI2_IRQHandler,                 // SPI2
+    119              USART1_IRQHandler,               // USART1
+    120              USART2_IRQHandler,       // USART2
+    121              int_default_handler,     // Reserved
+    122              CEC_IRQHandler,          // CEC
+    123              int_default_handler,     // Reserved
+    124          };
+    125          
+    126          // This is the code that gets called when the processor first starts execution
+    127          // following a reset event.  Only the absolutely necessary set is performed,
+    128          // after which the application supplied entry() routine is called.  Any fancy
+    129          // actions (such as making decisions based on the reset cause register, and
+    130          // resetting the bits in that register) are left solely in the hands of the
+    131          // application.
+    132          
+    133          #pragma call_graph_root="interrupt"         // interrupt category
+
+   \                                 In section .text, align 2, keep-with-next
+    134          void  reset_isr           (void) // The reset handler
+    135          {
+   \                     reset_isr: (+1)
+   \   00000000   0xB580             PUSH     {R7,LR}
+    136              //
+    137              // Call the application's entry point.
+    138              //
+    139              __iar_program_start();
+   \   00000002   0x.... 0x....      BL       __iar_program_start
+    140          }
+   \   00000006   0xBD01             POP      {R0,PC}          ;; return
+    141          
+    142          // This is the code that gets called when the processor receives a NMI.  This
+    143          // simply enters an infinite loop, preserving the system state for examination
+    144          // by a debugger.
+    145          #pragma call_graph_root="interrupt"         // interrupt category
+
+   \                                 In section .text, align 2, keep-with-next
+    146          void  nm_isr              (void) // NMI Handler
+    147          {
+   \                     nm_isr: (+1)
+   \   00000000   0xB500             PUSH     {LR}
+    148              //
+    149              // Enter an infinite loop.
+    150              //
+    151              while(1)
+   \                     ??nm_isr_0: (+1)
+   \   00000002   0xE7FE             B        ??nm_isr_0
+    152              {
+    153              }
+    154          }
+    155          
+    156          /*******************************************************************************
+    157          // This is the code that gets called when the processor receives a fault
+    158          // interrupt.  This simply enters an infinite loop, preserving the system state
+    159          // for examination by a debugger.
+    160          *******************************************************************************/
+    161          #pragma call_graph_root="interrupt"         // interrupt category
+
+   \                                 In section .text, align 2, keep-with-next
+    162          void  fault_isr           (void) // Hard Fault Handler
+    163          {
+   \                     fault_isr: (+1)
+   \   00000000   0xB500             PUSH     {LR}
+    164              //
+    165              // Enter an infinite loop.
+    166              //
+    167              while(1)
+   \                     ??fault_isr_0: (+1)
+   \   00000002   0xE7FE             B        ??fault_isr_0
+    168              {
+    169              }
+    170          }
+    171          
+    172          
+    173          /*******************************************************************************
+    174          // This is the code that gets called when the processor receives an unexpected
+    175          // interrupt.  This simply enters an infinite loop, preserving the system state
+    176          // for examination by a debugger.
+    177          *******************************************************************************/
+    178          #pragma call_graph_root="interrupt"         // interrupt category
+    179          void  int_default_handler (void) // Reserved
+    180          {
+    181              //
+    182              // Go into an infinite loop.
+    183              //
+    184              while(1)
+    185              {
+    186              }
+    187          }
+    188          
+    189          
+    190          /*******************************************************************************
+    191          * @brief  This function handles SVCall exception.
+    192          * @param  None
+    193          * @retval None
+    194          *******************************************************************************/
+    195          #pragma call_graph_root="interrupt"         // interrupt category
+
+   \                                 In section .text, align 2, keep-with-next
+    196          void  svc_handler         (void) // SVCall Handler
+    197          {
+    198          }
+   \                     svc_handler: (+1)
+   \   00000000   0x4770             BX       LR               ;; return
+    199          
+    200          /*******************************************************************************
+    201          * @brief  This function handles PendSVC exception.
+    202          * @param  None
+    203          * @retval None
+    204          *******************************************************************************/
+    205          #pragma call_graph_root="interrupt"         // interrupt category
+
+   \                                 In section .text, align 2, keep-with-next
+    206          void  pend_sv_handler     (void) // PendSV Handler
+    207          {
+    208          }
+   \                     pend_sv_handler: (+1)
+   \   00000000   0x4770             BX       LR               ;; return
+    209          
+    210          /*******************************************************************************
+    211          * прерывание системного счётчика времени
+    212          *
+    213          *******************************************************************************/
+    214          #pragma call_graph_root="interrupt"         // interrupt category
+
+   \                                 In section .text, align 2, keep-with-next
+    215          void  systick_handler     (void) // SysTick Handler
+    216          {
+    217            //сюда попадаем каждую 1 миллисекунду
+    218          	system_timer++;  
+   \                     systick_handler: (+1)
+   \   00000000   0x....             LDR      R0,??DataTable1
+   \   00000002   0x6800             LDR      R0,[R0, #+0]
+   \   00000004   0x1C40             ADDS     R0,R0,#+1
+   \   00000006   0x....             LDR      R1,??DataTable1
+   \   00000008   0x6008             STR      R0,[R1, #+0]
+    219          }
+   \   0000000A   0x4770             BX       LR               ;; return
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1:
+   \   00000000   0x........         DC32     system_timer
+    220          
+    221          
+    222          
+    223          
+    224          /*******************************************************************************
+    225          *******************************************************************************/
+    226          #pragma weak WWDG_IRQHandler                = int_default_handler
+    227          #pragma weak PVD_IRQHandler                 = int_default_handler
+    228          #pragma weak RTC_IRQHandler                 = int_default_handler
+    229          #pragma weak FLASH_IRQHandler               = int_default_handler
+    230          #pragma weak RCC_IRQHandler                 = int_default_handler
+    231          #pragma weak EXTI0_1_IRQHandler             = int_default_handler
+    232          #pragma weak EXTI2_3_IRQHandler             = int_default_handler
+    233          #pragma weak EXTI4_15_IRQHandler            = int_default_handler
+    234          #pragma weak TS_IRQHandler                  = int_default_handler
+    235          #pragma weak DMA1_Channel1_IRQHandler       = int_default_handler
+    236          #pragma weak DMA1_Channel2_3_IRQHandler     = int_default_handler
+    237          #pragma weak DMA1_Channel4_5_IRQHandler     = int_default_handler
+    238          #pragma weak ADC1_COMP_IRQHandler           = int_default_handler
+    239          #pragma weak TIM1_BRK_UP_TRG_COM_IRQHandler = int_default_handler
+    240          #pragma weak TIM1_CC_IRQHandler             = int_default_handler
+    241          #pragma weak TIM2_IRQHandler                = int_default_handler
+    242          #pragma weak TIM3_IRQHandler                = int_default_handler
+    243          #pragma weak TIM6_DAC_IRQHandler            = int_default_handler
+    244          #pragma weak TIM14_IRQHandler               = int_default_handler
+    245          #pragma weak TIM15_IRQHandler               = int_default_handler
+    246          #pragma weak TIM16_IRQHandler               = int_default_handler
+    247          #pragma weak TIM17_IRQHandler               = int_default_handler
+    248          #pragma weak I2C1_IRQHandler                = int_default_handler
+    249          #pragma weak I2C2_IRQHandler                = int_default_handler
+    250          #pragma weak SPI1_IRQHandler                = int_default_handler
+    251          #pragma weak SPI2_IRQHandler                = int_default_handler
+    252          #pragma weak USART1_IRQHandler              = int_default_handler
+    253          #pragma weak USART2_IRQHandler              = int_default_handler
+    254          #pragma weak CEC_IRQHandler                 = int_default_handler
+    255          
+    256          
+    257          /****END OF FILE****/
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       0   ADC1_COMP_IRQHandler
+       0   CEC_IRQHandler
+       0   DMA1_Channel1_IRQHandler
+       0   DMA1_Channel2_3_IRQHandler
+       0   DMA1_Channel4_5_IRQHandler
+       0   EXTI0_1_IRQHandler
+       0   EXTI2_3_IRQHandler
+       0   EXTI4_15_IRQHandler
+       0   FLASH_IRQHandler
+       0   I2C1_IRQHandler
+       0   I2C2_IRQHandler
+       0   PVD_IRQHandler
+       0   RCC_IRQHandler
+       0   RTC_IRQHandler
+       0   SPI1_IRQHandler
+       0   SPI2_IRQHandler
+       0   TIM14_IRQHandler
+       0   TIM15_IRQHandler
+       0   TIM16_IRQHandler
+       0   TIM17_IRQHandler
+       0   TIM1_BRK_UP_TRG_COM_IRQHandler
+       0   TIM1_CC_IRQHandler
+       0   TIM2_IRQHandler
+       0   TIM3_IRQHandler
+       0   TIM6_DAC_IRQHandler
+       0   TS_IRQHandler
+       0   USART1_IRQHandler
+       0   USART2_IRQHandler
+       0   WWDG_IRQHandler
+       4   fault_isr
+       4   int_default_handler
+       4   nm_isr
+       0   pend_sv_handler
+       8   reset_isr
+         8   -> __iar_program_start
+       0   svc_handler
+       0   systick_handler
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable1
+     192  __vector_table
+       4  fault_isr
+       4  int_default_handler
+          WWDG_IRQHandler
+          PVD_IRQHandler
+          RTC_IRQHandler
+          FLASH_IRQHandler
+          RCC_IRQHandler
+          EXTI0_1_IRQHandler
+          EXTI2_3_IRQHandler
+          EXTI4_15_IRQHandler
+          TS_IRQHandler
+          DMA1_Channel1_IRQHandler
+          DMA1_Channel2_3_IRQHandler
+          DMA1_Channel4_5_IRQHandler
+          ADC1_COMP_IRQHandler
+          TIM1_BRK_UP_TRG_COM_IRQHandler
+          TIM1_CC_IRQHandler
+          TIM2_IRQHandler
+          TIM3_IRQHandler
+          TIM6_DAC_IRQHandler
+          TIM14_IRQHandler
+          TIM15_IRQHandler
+          TIM16_IRQHandler
+          TIM17_IRQHandler
+          I2C1_IRQHandler
+          I2C2_IRQHandler
+          SPI1_IRQHandler
+          SPI2_IRQHandler
+          USART1_IRQHandler
+          USART2_IRQHandler
+          CEC_IRQHandler
+       4  nm_isr
+       2  pend_sv_handler
+       8  reset_isr
+       2  svc_handler
+       4  system_timer
+      12  systick_handler
+
+ 
+   4 bytes in section .bss
+ 192 bytes in section .intvec
+  40 bytes in section .text
+ 
+  40 bytes of CODE  memory
+ 192 bytes of CONST memory
+   4 bytes of DATA  memory
+
+Errors: none
+Warnings: none

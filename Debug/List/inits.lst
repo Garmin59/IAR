@@ -1,0 +1,432 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V8.20.2.14835/W32 for ARM       05/Jan/2018  18:41:09
+# Copyright 1999-2017 IAR Systems AB.
+#
+#    Cpu mode     =  thumb
+#    Endian       =  little
+#    Source file  =  
+#        D:\Ilya\Projects\332 WS2811 hew year light\IAR\project\inits.c
+#    Command line =  
+#        -f C:\Users\75BD~1\AppData\Local\Temp\EW2091.tmp
+#        ("D:\Ilya\Projects\332 WS2811 hew year light\IAR\project\inits.c" -D
+#        STM32F0XX -D STM32F051 --preprocess=c "D:\Ilya\Projects\332 WS2811 hew
+#        year light\IAR\Debug\List" -lC "D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\Debug\List" -o "D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\Debug\Obj" --no_cse --no_unroll --no_inline --no_code_motion
+#        --no_tbaa --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M0 -e --fpu=None --dlib_config "C:\Program Files
+#        (x86)\IAR Systems\Embedded Workbench
+#        8.0\arm\INC\c\DLib_Config_Normal.h" -I "D:\Ilya\Projects\332 WS2811
+#        hew year light\IAR\system\" -I "D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\project\" -I "D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\CMSIS\" -I "D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\CMSIS\inc\" -I "D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\" -Ol --use_c++_inline --relaxed_fp --source_encoding locale
+#        --text_out locale)
+#    Locale       =  Russian_RUS.1251
+#    List file    =  
+#        D:\Ilya\Projects\332 WS2811 hew year light\IAR\Debug\List\inits.lst
+#    Object file  =  
+#        D:\Ilya\Projects\332 WS2811 hew year light\IAR\Debug\Obj\inits.o
+#
+###############################################################################
+
+D:\Ilya\Projects\332 WS2811 hew year light\IAR\project\inits.c
+      1          
+      2          
+      3          #include	"stm32f0xx.h"
+      4          #include	"system_stm32f0xx.h"
+      5          #include	"stm32f0xx_conf.h"
+      6          #include	"stm32f0xxAdd.h"
+      7          #include	"core_cm0.h"
+
+   \                                 In section .text, align 2, keep-with-next
+   \   static __interwork __softfp void NVIC_EnableIRQ(IRQn_Type)
+   \                     NVIC_EnableIRQ: (+1)
+   \   00000000   0x2101             MOVS     R1,#+1
+   \   00000002   0x06C0             LSLS     R0,R0,#+27       ;; ZeroExtS R0,R0,#+27,#+27
+   \   00000004   0x0EC0             LSRS     R0,R0,#+27
+   \   00000006   0x4081             LSLS     R1,R1,R0
+   \   00000008   0x....             LDR      R0,??DataTable3  ;; 0xe000e100
+   \   0000000A   0x6001             STR      R1,[R0, #+0]
+   \   0000000C   0x4770             BX       LR               ;; return
+
+   \                                 In section .text, align 2, keep-with-next
+   \   static __interwork __softfp void NVIC_SetPriority(IRQn_Type, uint32_t)
+   \                     NVIC_SetPriority: (+1)
+   \   00000000   0xB5F0             PUSH     {R4-R7,LR}
+   \   00000002   0x0002             MOVS     R2,R0
+   \   00000004   0xB252             SXTB     R2,R2
+   \   00000006   0x2A00             CMP      R2,#+0
+   \   00000008   0xD523             BPL      ??NVIC_SetPriority_0
+   \   0000000A   0x....             LDR      R3,??DataTable3_1  ;; 0xe000ed1c
+   \   0000000C   0x0002             MOVS     R2,R0
+   \   0000000E   0xB252             SXTB     R2,R2
+   \   00000010   0x0712             LSLS     R2,R2,#+28       ;; ZeroExtS R2,R2,#+28,#+28
+   \   00000012   0x0F12             LSRS     R2,R2,#+28
+   \   00000014   0x3A08             SUBS     R2,R2,#+8
+   \   00000016   0x0892             LSRS     R2,R2,#+2
+   \   00000018   0x2404             MOVS     R4,#+4
+   \   0000001A   0x4362             MULS     R2,R4,R2
+   \   0000001C   0x....             LDR      R4,??DataTable3_1  ;; 0xe000ed1c
+   \   0000001E   0x0005             MOVS     R5,R0
+   \   00000020   0xB26D             SXTB     R5,R5
+   \   00000022   0x072D             LSLS     R5,R5,#+28       ;; ZeroExtS R5,R5,#+28,#+28
+   \   00000024   0x0F2D             LSRS     R5,R5,#+28
+   \   00000026   0x3D08             SUBS     R5,R5,#+8
+   \   00000028   0x08AD             LSRS     R5,R5,#+2
+   \   0000002A   0x2604             MOVS     R6,#+4
+   \   0000002C   0x4375             MULS     R5,R6,R5
+   \   0000002E   0x5964             LDR      R4,[R4, R5]
+   \   00000030   0x25FF             MOVS     R5,#+255
+   \   00000032   0x0786             LSLS     R6,R0,#+30       ;; ZeroExtS R6,R0,#+30,#+30
+   \   00000034   0x0FB6             LSRS     R6,R6,#+30
+   \   00000036   0x2708             MOVS     R7,#+8
+   \   00000038   0x437E             MULS     R6,R7,R6
+   \   0000003A   0x40B5             LSLS     R5,R5,R6
+   \   0000003C   0x43AC             BICS     R4,R4,R5
+   \   0000003E   0x0189             LSLS     R1,R1,#+6
+   \   00000040   0xB2C9             UXTB     R1,R1
+   \   00000042   0x0780             LSLS     R0,R0,#+30       ;; ZeroExtS R0,R0,#+30,#+30
+   \   00000044   0x0F80             LSRS     R0,R0,#+30
+   \   00000046   0x2508             MOVS     R5,#+8
+   \   00000048   0x4368             MULS     R0,R5,R0
+   \   0000004A   0x4081             LSLS     R1,R1,R0
+   \   0000004C   0x4321             ORRS     R1,R1,R4
+   \   0000004E   0x5099             STR      R1,[R3, R2]
+   \   00000050   0xE01B             B        ??NVIC_SetPriority_1
+   \                     ??NVIC_SetPriority_0: (+1)
+   \   00000052   0x....             LDR      R2,??DataTable3_2  ;; 0xe000e400
+   \   00000054   0x0003             MOVS     R3,R0
+   \   00000056   0xB25B             SXTB     R3,R3
+   \   00000058   0x089B             LSRS     R3,R3,#+2
+   \   0000005A   0x2404             MOVS     R4,#+4
+   \   0000005C   0x4363             MULS     R3,R4,R3
+   \   0000005E   0x58D2             LDR      R2,[R2, R3]
+   \   00000060   0x23FF             MOVS     R3,#+255
+   \   00000062   0x0784             LSLS     R4,R0,#+30       ;; ZeroExtS R4,R0,#+30,#+30
+   \   00000064   0x0FA4             LSRS     R4,R4,#+30
+   \   00000066   0x2508             MOVS     R5,#+8
+   \   00000068   0x436C             MULS     R4,R5,R4
+   \   0000006A   0x40A3             LSLS     R3,R3,R4
+   \   0000006C   0x439A             BICS     R2,R2,R3
+   \   0000006E   0x0189             LSLS     R1,R1,#+6
+   \   00000070   0xB2C9             UXTB     R1,R1
+   \   00000072   0x0783             LSLS     R3,R0,#+30       ;; ZeroExtS R3,R0,#+30,#+30
+   \   00000074   0x0F9B             LSRS     R3,R3,#+30
+   \   00000076   0x2408             MOVS     R4,#+8
+   \   00000078   0x4363             MULS     R3,R4,R3
+   \   0000007A   0x4099             LSLS     R1,R1,R3
+   \   0000007C   0x4311             ORRS     R1,R1,R2
+   \   0000007E   0x....             LDR      R2,??DataTable3_2  ;; 0xe000e400
+   \   00000080   0xB240             SXTB     R0,R0
+   \   00000082   0x0880             LSRS     R0,R0,#+2
+   \   00000084   0x2304             MOVS     R3,#+4
+   \   00000086   0x4358             MULS     R0,R3,R0
+   \   00000088   0x5011             STR      R1,[R2, R0]
+   \                     ??NVIC_SetPriority_1: (+1)
+   \   0000008A   0xBDF0             POP      {R4-R7,PC}       ;; return
+
+   \                                 In section .text, align 2, keep-with-next
+   \   static __interwork __softfp uint32_t SysTick_Config(uint32_t)
+   \                     SysTick_Config: (+1)
+   \   00000000   0xB580             PUSH     {R7,LR}
+   \   00000002   0x2180             MOVS     R1,#+128
+   \   00000004   0x0449             LSLS     R1,R1,#+17       ;; #+16777216
+   \   00000006   0x4288             CMP      R0,R1
+   \   00000008   0xD301             BCC      ??SysTick_Config_0
+   \   0000000A   0x2001             MOVS     R0,#+1
+   \   0000000C   0xE010             B        ??SysTick_Config_1
+   \                     ??SysTick_Config_0: (+1)
+   \   0000000E   0x0200             LSLS     R0,R0,#+8        ;; ZeroExtS R0,R0,#+8,#+8
+   \   00000010   0x0A00             LSRS     R0,R0,#+8
+   \   00000012   0x1E40             SUBS     R0,R0,#+1
+   \   00000014   0x....             LDR      R1,??DataTable3_3  ;; 0xe000e014
+   \   00000016   0x6008             STR      R0,[R1, #+0]
+   \   00000018   0x2103             MOVS     R1,#+3
+   \   0000001A   0x2000             MOVS     R0,#+0
+   \   0000001C   0x43C0             MVNS     R0,R0            ;; #-1
+   \   0000001E   0x.... 0x....      BL       NVIC_SetPriority
+   \   00000022   0x2000             MOVS     R0,#+0
+   \   00000024   0x....             LDR      R1,??DataTable3_4  ;; 0xe000e018
+   \   00000026   0x6008             STR      R0,[R1, #+0]
+   \   00000028   0x2007             MOVS     R0,#+7
+   \   0000002A   0x....             LDR      R1,??DataTable3_5  ;; 0xe000e010
+   \   0000002C   0x6008             STR      R0,[R1, #+0]
+   \   0000002E   0x2000             MOVS     R0,#+0
+   \                     ??SysTick_Config_1: (+1)
+   \   00000030   0xBD02             POP      {R1,PC}          ;; return
+      8          #include 	"effects.h"
+      9          #include	"global.h"
+     10          #include	"inits.h"
+     11          
+
+   \                                 In section .text, align 2, keep-with-next
+     12          void system_clocks_init (void)
+     13          {
+   \                     system_clocks_init: (+1)
+   \   00000000   0xB500             PUSH     {LR}
+   \   00000002   0xB087             SUB      SP,SP,#+28
+     14           	RCC_ClocksTypeDef	RCC_Clocks;
+     15          
+     16          	SystemInit ();						// from startup files system_stm32f0xx.c
+   \   00000004   0x.... 0x....      BL       SystemInit
+     17          	SystemCoreClockUpdate ();			// установка тактирования
+   \   00000008   0x.... 0x....      BL       SystemCoreClockUpdate
+     18          	RCC_GetClocksFreq (&RCC_Clocks);	// получить текущие значения частот и тактирования
+   \   0000000C   0x4668             MOV      R0,SP
+   \   0000000E   0x.... 0x....      BL       RCC_GetClocksFreq
+     19          
+     20          	RCC_ClockSecuritySystemCmd (ENABLE);	// Enable Clock Security System(CSS): this will generate an NMI exception when HSE clock fails
+   \   00000012   0x2001             MOVS     R0,#+1
+   \   00000014   0x.... 0x....      BL       RCC_ClockSecuritySystemCmd
+     21          
+     22          	init_irq ();
+   \   00000018   0x.... 0x....      BL       init_irq
+     23          
+     24          	SysTick_Config ((RCC_Clocks.HCLK_Frequency / 1000) - 1);	// конфигурация системного таймера 1000 Гц (1 мс) 
+   \   0000001C   0x9801             LDR      R0,[SP, #+4]
+   \   0000001E   0x21FA             MOVS     R1,#+250
+   \   00000020   0x0089             LSLS     R1,R1,#+2        ;; #+1000
+   \   00000022   0x.... 0x....      BL       __aeabi_uidiv
+   \   00000026   0x1E40             SUBS     R0,R0,#+1
+   \   00000028   0x.... 0x....      BL       SysTick_Config
+     25          }
+   \   0000002C   0xB007             ADD      SP,SP,#+28
+   \   0000002E   0xBD00             POP      {PC}             ;; return
+     26          
+
+   \                                 In section .text, align 2, keep-with-next
+     27          void vInit_gpio_pin (void)
+     28          {
+     29          /* Enable the GPIOA Clock */
+     30          	RCC->AHBENR |= RCC_AHBENR_GPIOFEN;
+   \                     vInit_gpio_pin: (+1)
+   \   00000000   0x....             LDR      R0,??DataTable3_6  ;; 0x40021014
+   \   00000002   0x6800             LDR      R0,[R0, #+0]
+   \   00000004   0x2180             MOVS     R1,#+128
+   \   00000006   0x03C9             LSLS     R1,R1,#+15       ;; #+4194304
+   \   00000008   0x4301             ORRS     R1,R1,R0
+   \   0000000A   0x....             LDR      R0,??DataTable3_6  ;; 0x40021014
+   \   0000000C   0x6001             STR      R1,[R0, #+0]
+     31          	
+     32          
+     33          /* Output System Clock on MCO pin */
+     34          	//RCC->CFGR |= RCC_CFGR_MCO_SYSCLK;
+     35          
+     36          	GPIOF->MODER &= ~GPIO_MODER_MODER4;			// PinF4 - input кнопка USER
+   \   0000000E   0x....             LDR      R0,??DataTable3_7  ;; 0x48001400
+   \   00000010   0x6800             LDR      R0,[R0, #+0]
+   \   00000012   0x....             LDR      R1,??DataTable3_8  ;; 0xfffffcff
+   \   00000014   0x4001             ANDS     R1,R1,R0
+   \   00000016   0x....             LDR      R0,??DataTable3_7  ;; 0x48001400
+   \   00000018   0x6001             STR      R1,[R0, #+0]
+     37          	GPIOF->OTYPER &= ~GPIO_OTYPER_OT_4;			// PinF4 - pushpull
+   \   0000001A   0x....             LDR      R0,??DataTable3_9  ;; 0x48001404
+   \   0000001C   0x8800             LDRH     R0,[R0, #+0]
+   \   0000001E   0x....             LDR      R1,??DataTable3_10  ;; 0xffef
+   \   00000020   0x4001             ANDS     R1,R1,R0
+   \   00000022   0x....             LDR      R0,??DataTable3_9  ;; 0x48001404
+   \   00000024   0x8001             STRH     R1,[R0, #+0]
+     38          	GPIOF->OSPEEDR &= ~GPIO_OSPEEDER_OSPEEDR4;	// PinF4 speed low
+   \   00000026   0x....             LDR      R0,??DataTable3_11  ;; 0x48001408
+   \   00000028   0x6800             LDR      R0,[R0, #+0]
+   \   0000002A   0x....             LDR      R1,??DataTable3_8  ;; 0xfffffcff
+   \   0000002C   0x4001             ANDS     R1,R1,R0
+   \   0000002E   0x....             LDR      R0,??DataTable3_11  ;; 0x48001408
+   \   00000030   0x6001             STR      R1,[R0, #+0]
+     39          	GPIOF->PUPDR |= GPIO_PUPDR_PUPDR4_1;		// PinF4 подтяжка к земле
+   \   00000032   0x....             LDR      R0,??DataTable3_12  ;; 0x4800140c
+   \   00000034   0x6800             LDR      R0,[R0, #+0]
+   \   00000036   0x2180             MOVS     R1,#+128
+   \   00000038   0x0089             LSLS     R1,R1,#+2        ;; #+512
+   \   0000003A   0x4301             ORRS     R1,R1,R0
+   \   0000003C   0x....             LDR      R0,??DataTable3_12  ;; 0x4800140c
+   \   0000003E   0x6001             STR      R1,[R0, #+0]
+     40          }
+   \   00000040   0x4770             BX       LR               ;; return
+     41          
+     42          
+     43          
+     44          /*******************************************************************************
+     45          * Разрешение прерываний и их приоритеты
+     46          *
+     47          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+     48          void init_irq (void)
+     49          {
+   \                     init_irq: (+1)
+   \   00000000   0xB580             PUSH     {R7,LR}
+     50            NVIC_SetPriority (USART1_IRQn, (uint32_t) 2);			// установить приоритет прерывания от 0 до 3
+   \   00000002   0x2102             MOVS     R1,#+2
+   \   00000004   0x201B             MOVS     R0,#+27
+   \   00000006   0x.... 0x....      BL       NVIC_SetPriority
+     51            NVIC_SetPriority (DMA1_Channel4_5_IRQn, (uint32_t) 2);	// установить приоритет прерывания от 0 до 3
+   \   0000000A   0x2102             MOVS     R1,#+2
+   \   0000000C   0x200B             MOVS     R0,#+11
+   \   0000000E   0x.... 0x....      BL       NVIC_SetPriority
+     52          	NVIC_SetPriority (TIM15_IRQn, (uint32_t) 3);			// установить приоритет прерывания от 0 до 3
+   \   00000012   0x2103             MOVS     R1,#+3
+   \   00000014   0x2014             MOVS     R0,#+20
+   \   00000016   0x.... 0x....      BL       NVIC_SetPriority
+     53          	NVIC_SetPriority (TS_IRQn, (uint32_t) 2);				// установить приоритет прерывания от 0 до 3
+   \   0000001A   0x2102             MOVS     R1,#+2
+   \   0000001C   0x2008             MOVS     R0,#+8
+   \   0000001E   0x.... 0x....      BL       NVIC_SetPriority
+     54          	
+     55          	NVIC_EnableIRQ (USART1_IRQn);			// разрешить прерывания от USART1
+   \   00000022   0x201B             MOVS     R0,#+27
+   \   00000024   0x.... 0x....      BL       NVIC_EnableIRQ
+     56          	NVIC_EnableIRQ (DMA1_Channel4_5_IRQn);	// разрешить прерывания от DMA4
+   \   00000028   0x200B             MOVS     R0,#+11
+   \   0000002A   0x.... 0x....      BL       NVIC_EnableIRQ
+     57          	NVIC_EnableIRQ (TIM15_IRQn);			// разрешить прерывания от TIM15
+   \   0000002E   0x2014             MOVS     R0,#+20
+   \   00000030   0x.... 0x....      BL       NVIC_EnableIRQ
+     58          	NVIC_EnableIRQ (TS_IRQn);				// разрешить прерывания от TS
+   \   00000034   0x2008             MOVS     R0,#+8
+   \   00000036   0x.... 0x....      BL       NVIC_EnableIRQ
+     59          	
+     60             /* These interrupts are enabled in stm32f0xx_it.c file	*/
+     61          }
+   \   0000003A   0xBD01             POP      {R0,PC}          ;; return
+     62          
+
+   \                                 In section .text, align 2, keep-with-next
+     63          void vInit_dma (void)
+     64          {
+     65          //	RCC->AHBENR |= RCC_AHBENR_DMA1EN;						// включить тактирование DMA1
+     66          //	RCC->APB2ENR |= RCC_APB2ENR_SYSCFGEN;					// включить тактирование SYSCFG
+     67          //	SYSCFG->CFGR1 |= SYSCFG_CFGR1_USART1TX_DMA_RMP;			// переключить запрос USART1 TXE на канал 4
+     68          //	//RCC->APB2ENR &= ~RCC_APB2ENR_SYSCFGEN;					// выключить тактирование SYSCFG
+     69          //	
+     70          //	DMA1_Channel4->CPAR = (uint32_t)&(USART1->TDR);	// адрес перифериии
+     71          ////	DMA1_Channel4->CMAR = (__IO uint32_t)g.USART1_outbuf;	// адрес памяти
+     72          //	DMA1_Channel4->CNDTR = DMA_CNDTR_NDT & g.usart1_outlen;	// длина пересылки
+     73          //	
+     74          //	DMA1_Channel4->CCR = 0;					// очистить управляющий регистр
+     75          //	DMA1_Channel4->CCR &= ~DMA_CCR_MEM2MEM;	// не из памяти в память
+     76          //	DMA1_Channel4->CCR &= ~DMA_CCR_PL;		// приоритет низкий
+     77          //	DMA1_Channel4->CCR |= DMA_CCR_PL_1;		// приоритет высокий
+     78          //	DMA1_Channel4->CCR &= ~DMA_CCR_MSIZE;	// размер данных 8 бит
+     79          //	DMA1_Channel4->CCR &= ~DMA_CCR_PSIZE;	// размер периферии 8 бит
+     80          //	DMA1_Channel4->CCR |= DMA_CCR_MINC;		// память инкрементировать
+     81          //	DMA1_Channel4->CCR &= ~DMA_CCR_PINC;	// периферию не инкрементировать
+     82          //	DMA1_Channel4->CCR &= ~DMA_CCR_CIRC;	// циркулярный режим выключен
+     83          //	DMA1_Channel4->CCR |= DMA_CCR_DIR;		// направление от памяти в периферию
+     84          //	DMA1_Channel4->CCR |= DMA_CCR_TCIE;		// разрешить прерывание окончания передачи
+     85          }
+   \                     vInit_dma: (+1)
+   \   00000000   0x4770             BX       LR               ;; return
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3:
+   \   00000000   0xE000E100         DC32     0xe000e100
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_1:
+   \   00000000   0xE000ED1C         DC32     0xe000ed1c
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_2:
+   \   00000000   0xE000E400         DC32     0xe000e400
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_3:
+   \   00000000   0xE000E014         DC32     0xe000e014
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_4:
+   \   00000000   0xE000E018         DC32     0xe000e018
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_5:
+   \   00000000   0xE000E010         DC32     0xe000e010
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_6:
+   \   00000000   0x40021014         DC32     0x40021014
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_7:
+   \   00000000   0x48001400         DC32     0x48001400
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_8:
+   \   00000000   0xFFFFFCFF         DC32     0xfffffcff
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_9:
+   \   00000000   0x48001404         DC32     0x48001404
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_10:
+   \   00000000   0x0000FFEF         DC32     0xffef
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_11:
+   \   00000000   0x48001408         DC32     0x48001408
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_12:
+   \   00000000   0x4800140C         DC32     0x4800140c
+     86          
+     87          
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       0   NVIC_EnableIRQ
+      20   NVIC_SetPriority
+       8   SysTick_Config
+         8   -> NVIC_SetPriority
+       8   init_irq
+         8   -> NVIC_EnableIRQ
+         8   -> NVIC_SetPriority
+      32   system_clocks_init
+        32   -> RCC_ClockSecuritySystemCmd
+        32   -> RCC_GetClocksFreq
+        32   -> SysTick_Config
+        32   -> SystemCoreClockUpdate
+        32   -> SystemInit
+        32   -> init_irq
+        32 __aeabi_uidiv
+       0   vInit_dma
+       0   vInit_gpio_pin
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable3
+       4  ??DataTable3_1
+       4  ??DataTable3_10
+       4  ??DataTable3_11
+       4  ??DataTable3_12
+       4  ??DataTable3_2
+       4  ??DataTable3_3
+       4  ??DataTable3_4
+       4  ??DataTable3_5
+       4  ??DataTable3_6
+       4  ??DataTable3_7
+       4  ??DataTable3_8
+       4  ??DataTable3_9
+      14  NVIC_EnableIRQ
+     140  NVIC_SetPriority
+      50  SysTick_Config
+      60  init_irq
+      48  system_clocks_init
+       2  vInit_dma
+      66  vInit_gpio_pin
+
+ 
+ 432 bytes in section .text
+ 
+ 432 bytes of CODE memory
+
+Errors: none
+Warnings: none

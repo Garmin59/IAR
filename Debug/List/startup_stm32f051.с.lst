@@ -1,0 +1,446 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V8.20.2.14835/W32 for ARM       24/Dec/2017  15:34:14
+# Copyright 1999-2017 IAR Systems AB.
+#
+#    Cpu mode     =  thumb
+#    Endian       =  little
+#    Source file  =  
+#        D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\system\startup_stm32f051.@.c
+#    Command line =  
+#        -f C:\Users\75BD~1\AppData\Local\Temp\EWA3FF.tmp
+#        ("D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\system\startup_stm32f051.@.c" -lC "D:\Ilya\Projects\332
+#        WS2811 hew year light\IAR\Debug\List" -o "D:\Ilya\Projects\332 WS2811
+#        hew year light\IAR\Debug\Obj" --no_cse --no_unroll --no_inline
+#        --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug
+#        --endian=little --cpu=Cortex-M0 -e --fpu=None --dlib_config
+#        "C:\Program Files (x86)\IAR Systems\Embedded Workbench
+#        8.0\arm\INC\c\DLib_Config_Normal.h" -I "D:\Ilya\Projects\332 WS2811
+#        hew year light\IAR\system\" -I "D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\startup\" -I "D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\project\" -I "D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\interrupts\" -I "D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\CMSIS\inc\" -Ol --use_c++_inline --relaxed_fp)
+#    Locale       =  C
+#    List file    =  
+#        D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\Debug\List\startup_stm32f051.@.lst
+#    Object file  =  
+#        D:\Ilya\Projects\332 WS2811 hew year
+#        light\IAR\Debug\Obj\startup_stm32f051.@.o
+#
+###############################################################################
+
+D:\Ilya\Projects\332 WS2811 hew year light\IAR\system\startup_stm32f051.@.c
+      1          /******************** (C) COPYRIGHT 2012 STMicroelectronics ********************
+      2          * File Name          : startup_stm32f051.ñ
+      3          * Author             : Ilya Petrukhin
+      4          *******************************************************************************/
+      5          
+      6          
+      7          // Enable the IAR extensions for this source file.
+      8          #pragma language=extended
+      9          #pragma segment="CSTACK"
+     10          // Forward declaration of the default fault handlers.
+     11          void reset_isr(void);
+     12          static void nm_isr(void);
+     13          static void fault_isr(void);
+     14          static void int_default_handler(void);
+     15          // The entry point for the application startup code.
+     16          extern void __iar_program_start(void);
+     17          //extern void EXTI_Line0_IntHandler(void);
+     18          //extern void EXTI_Line6_IntHandler(void);
+     19          // A union that describes the entries of the vector table.  The union is needed
+     20          // since the first entry is the stack pointer and the remainder are function
+     21          // pointers.
+     22          typedef union
+     23          {
+     24              void (*pfnHandler)(void);
+     25              void * ulPtr;
+     26          }
+     27          uVectorEntry;
+     28          
+     29          // The vector table.  Note that the proper constructs must be placed on this to
+     30          // ensure that it ends up at physical address 0x0000.0000.
+     31          __root const uVectorEntry __vector_table[] @ ".intvec" =
+     32          {
+     33              { .ulPtr = __sfe( "CSTACK" ) },
+     34                                                      // The initial stack pointer
+     35              reset_isr,                               // The reset handler
+     36              nm_isr                    ; NMI Handler
+                                               ^
+Error[Pe067]: expected a "}"
+
+      nm_isr                    ; NMI Handler
+                                  ^
+"D:\Ilya\Projects\332 WS2811 hew year light\IAR\system\startup_stm32f051.@.c",36  Error[Pe020]: 
+          identifier "NMI" is undefined
+     37              fault_isr              ; Hard Fault Handler
+                     ^
+Error[Pe065]: expected a ";"
+
+      fault_isr              ; Hard Fault Handler
+                               ^
+"D:\Ilya\Projects\332 WS2811 hew year light\IAR\system\startup_stm32f051.@.c",37  Error[Pe020]: 
+          identifier "Hard" is undefined
+
+      fault_isr              ; Hard Fault Handler
+                                          ^
+"D:\Ilya\Projects\332 WS2811 hew year light\IAR\system\startup_stm32f051.@.c",37  Error[Pe065]: 
+          expected a ";"
+     38              int_default_handler                             ; Reserved
+                                                                       ^
+Error[Pe020]: identifier "Reserved" is undefined
+     39              int_default_handler                             ; Reserved
+                     ^
+Error[Pe147]: declaration is incompatible with "__interwork __softfp void
+          int_default_handler(void)" (declared at line 14)
+
+      int_default_handler                             ; Reserved
+                                                        ^
+"D:\Ilya\Projects\332 WS2811 hew year light\IAR\system\startup_stm32f051.@.c",39  Error[Pe020]: 
+          identifier "Reserved" is undefined
+     40              int_default_handler                             ; Reserved
+                     ^
+Error[Pe159]: declaration is incompatible with previous "int_default_handler"
+          (declared at line 14)
+
+      int_default_handler                             ; Reserved
+                                                        ^
+"D:\Ilya\Projects\332 WS2811 hew year light\IAR\system\startup_stm32f051.@.c",40  Error[Pe020]: 
+          identifier "Reserved" is undefined
+     41              int_default_handler                             ; Reserved
+                     ^
+Error[Pe159]: declaration is incompatible with previous "int_default_handler"
+          (declared at line 14)
+
+      int_default_handler                             ; Reserved
+                                                        ^
+"D:\Ilya\Projects\332 WS2811 hew year light\IAR\system\startup_stm32f051.@.c",41  Error[Pe020]: 
+          identifier "Reserved" is undefined
+     42              int_default_handler                             ; Reserved
+                     ^
+Error[Pe159]: declaration is incompatible with previous "int_default_handler"
+          (declared at line 14)
+
+      int_default_handler                             ; Reserved
+                                                        ^
+"D:\Ilya\Projects\332 WS2811 hew year light\IAR\system\startup_stm32f051.@.c",42  Error[Pe020]: 
+          identifier "Reserved" is undefined
+     43              int_default_handler                             ; Reserved
+                     ^
+Error[Pe159]: declaration is incompatible with previous "int_default_handler"
+          (declared at line 14)
+
+      int_default_handler                             ; Reserved
+                                                        ^
+"D:\Ilya\Projects\332 WS2811 hew year light\IAR\system\startup_stm32f051.@.c",43  Error[Pe020]: 
+          identifier "Reserved" is undefined
+     44              int_default_handler                             ; Reserved
+                     ^
+Error[Pe159]: declaration is incompatible with previous "int_default_handler"
+          (declared at line 14)
+
+      int_default_handler                             ; Reserved
+                                                        ^
+"D:\Ilya\Projects\332 WS2811 hew year light\IAR\system\startup_stm32f051.@.c",44  Error[Pe020]: 
+          identifier "Reserved" is undefined
+     45              SVC_Handler                    ; SVCall Handler
+                                                      ^
+Error[Pe020]: identifier "SVCall" is undefined
+     46              int_default_handler                             ; Reserved
+                     ^
+Error[Pe065]: expected a ";"
+
+      int_default_handler                             ; Reserved
+                                                        ^
+"D:\Ilya\Projects\332 WS2811 hew year light\IAR\system\startup_stm32f051.@.c",46  Error[Pe020]: 
+          identifier "Reserved" is undefined
+     47              int_default_handler                             ; Reserved
+                     ^
+Error[Pe159]: declaration is incompatible with previous "int_default_handler"
+          (declared at line 14)
+
+      int_default_handler                             ; Reserved
+                                                        ^
+"D:\Ilya\Projects\332 WS2811 hew year light\IAR\system\startup_stm32f051.@.c",47  Error[Pe020]: 
+          identifier "Reserved" is undefined
+     48              PendSV_Handler                 ; PendSV Handler
+                                                      ^
+Error[Pe020]: identifier "PendSV" is undefined
+     49              SysTick_Handler                ; SysTick Handler
+                     ^
+Error[Pe065]: expected a ";"
+
+      SysTick_Handler                ; SysTick Handler
+                                       ^
+"D:\Ilya\Projects\332 WS2811 hew year light\IAR\system\startup_stm32f051.@.c",49  Error[Pe020]: 
+          identifier "SysTick" is undefined
+     50          
+     51              ; External Interrupts
+                       ^
+Error[Pe020]: identifier "External" is undefined
+     52              WWDG_IRQHandler                ; Window Watchdog
+                     ^
+Error[Pe065]: expected a ";"
+
+      WWDG_IRQHandler                ; Window Watchdog
+                                       ^
+"D:\Ilya\Projects\332 WS2811 hew year light\IAR\system\startup_stm32f051.@.c",52  Error[Pe020]: 
+          identifier "Window" is undefined
+     53              PVD_IRQHandler                 ; PVD through EXTI Line detect
+                     ^
+Error[Pe065]: expected a ";"
+
+      PVD_IRQHandler                 ; PVD through EXTI Line detect
+                                       ^
+"D:\Ilya\Projects\332 WS2811 hew year light\IAR\system\startup_stm32f051.@.c",53  Error[Pe020]: 
+          identifier "PVD" is undefined
+
+      PVD_IRQHandler                 ; PVD through EXTI Line detect
+                                                   ^
+"D:\Ilya\Projects\332 WS2811 hew year light\IAR\system\startup_stm32f051.@.c",53  Error[Pe065]: 
+          expected a ";"
+     54              RTC_IRQHandler                 ; RTC through EXTI Line
+                                                      ^
+Error[Pe020]: identifier "RTC" is undefined
+
+      RTC_IRQHandler                 ; RTC through EXTI Line
+                                                   ^
+"D:\Ilya\Projects\332 WS2811 hew year light\IAR\system\startup_stm32f051.@.c",54  Error[Pe065]: 
+          expected a ";"
+     55              FLASH_IRQHandler               ; FLASH
+                                                      ^
+Error[Pe020]: identifier "FLASH" is undefined
+     56              RCC_IRQHandler                 ; RCC
+                                                      ^
+Error[Pe020]: identifier "RCC" is undefined
+     57              EXTI0_1_IRQHandler             ; EXTI Line 0 and 1
+                                                      ^
+Error[Pe020]: identifier "EXTI" is undefined
+
+      EXTI0_1_IRQHandler             ; EXTI Line 0 and 1
+                                                 ^
+"D:\Ilya\Projects\332 WS2811 hew year light\IAR\system\startup_stm32f051.@.c",57  Error[Pe065]: 
+          expected a ";"
+     58              EXTI2_3_IRQHandler             ; EXTI Line 2 and 3
+                                                      ^
+Error[Pe020]: identifier "EXTI" is undefined
+
+      EXTI2_3_IRQHandler             ; EXTI Line 2 and 3
+                                                 ^
+"D:\Ilya\Projects\332 WS2811 hew year light\IAR\system\startup_stm32f051.@.c",58  Error[Pe065]: 
+          expected a ";"
+     59              EXTI4_15_IRQHandler            ; EXTI Line 4 to 15
+                                                      ^
+Error[Pe020]: identifier "EXTI" is undefined
+
+      EXTI4_15_IRQHandler            ; EXTI Line 4 to 15
+                                                 ^
+"D:\Ilya\Projects\332 WS2811 hew year light\IAR\system\startup_stm32f051.@.c",59  Error[Pe065]: 
+          expected a ";"
+     60              TS_IRQHandler                  ; TS
+                                                      ^
+Error[Pe020]: identifier "TS" is undefined
+     61              DMA1_Channel1_IRQHandler       ; DMA1 Channel 1
+                                                      ^
+Error[Pe020]: identifier "DMA1" is undefined
+
+      DMA1_Channel1_IRQHandler       ; DMA1 Channel 1
+                                                    ^
+"D:\Ilya\Projects\332 WS2811 hew year light\IAR\system\startup_stm32f051.@.c",61  Error[Pe065]: 
+          expected a ";"
+     62              DMA1_Channel2_3_IRQHandler     ; DMA1 Channel 2 and Channel 3
+                                                      ^
+Error[Pe020]: identifier "DMA1" is undefined
+
+      DMA1_Channel2_3_IRQHandler     ; DMA1 Channel 2 and Channel 3
+                                                    ^
+"D:\Ilya\Projects\332 WS2811 hew year light\IAR\system\startup_stm32f051.@.c",62  Error[Pe065]: 
+          expected a ";"
+     63              DMA1_Channel4_5_IRQHandler     ; DMA1 Channel 4 and Channel 5
+                                                      ^
+Error[Pe020]: identifier "DMA1" is undefined
+
+      DMA1_Channel4_5_IRQHandler     ; DMA1 Channel 4 and Channel 5
+                                                    ^
+"D:\Ilya\Projects\332 WS2811 hew year light\IAR\system\startup_stm32f051.@.c",63  Error[Pe065]: 
+          expected a ";"
+     64              ADC1_COMP_IRQHandler           ; ADC1, COMP1 and COMP2 
+                                                      ^
+Error[Pe077]: this declaration has no storage class or type specifier
+
+      ADC1_COMP_IRQHandler           ; ADC1, COMP1 and COMP2 
+                                             ^
+"D:\Ilya\Projects\332 WS2811 hew year light\IAR\system\startup_stm32f051.@.c",64  Error[Pe077]: 
+          this declaration has no storage class or type specifier
+
+      ADC1_COMP_IRQHandler           ; ADC1, COMP1 and COMP2 
+                                                   ^
+"D:\Ilya\Projects\332 WS2811 hew year light\IAR\system\startup_stm32f051.@.c",64  Error[Pe065]: 
+          expected a ";"
+     65              TIM1_BRK_UP_TRG_COM_IRQHandler ; TIM1 Break, Update, Trigger and Commutation
+                                                      ^
+Error[Pe020]: identifier "TIM1" is undefined
+
+      TIM1_BRK_UP_TRG_COM_IRQHandler ; TIM1 Break, Update, Trigger and Commutation
+                                                                   ^
+"D:\Ilya\Projects\332 WS2811 hew year light\IAR\system\startup_stm32f051.@.c",65  Error[Pe065]: 
+          expected a ";"
+     66              TIM1_CC_IRQHandler             ; TIM1 Capture Compare
+                                                      ^
+Error[Pe020]: identifier "TIM1" is undefined
+
+      TIM1_CC_IRQHandler             ; TIM1 Capture Compare
+                                                    ^
+"D:\Ilya\Projects\332 WS2811 hew year light\IAR\system\startup_stm32f051.@.c",66  Error[Pe065]: 
+          expected a ";"
+     67              TIM2_IRQHandler                ; TIM2
+                                                      ^
+Error[Pe020]: identifier "TIM2" is undefined
+     68              TIM3_IRQHandler                ; TIM3
+                                                      ^
+Error[Pe020]: identifier "TIM3" is undefined
+     69              TIM6_DAC_IRQHandler            ; TIM6 and DAC
+                                                      ^
+Error[Pe020]: identifier "TIM6" is undefined
+
+      TIM6_DAC_IRQHandler            ; TIM6 and DAC
+                                                ^
+"D:\Ilya\Projects\332 WS2811 hew year light\IAR\system\startup_stm32f051.@.c",69  Error[Pe065]: 
+          expected a ";"
+     70              int_default_handler                             ; Reserved
+                                                                       ^
+Error[Pe020]: identifier "Reserved" is undefined
+     71              TIM14_IRQHandler               ; TIM14
+                                                      ^
+Error[Pe020]: identifier "TIM14" is undefined
+     72              TIM15_IRQHandler               ; TIM15
+                                                      ^
+Error[Pe020]: identifier "TIM15" is undefined
+     73              TIM16_IRQHandler               ; TIM16
+                                                      ^
+Error[Pe020]: identifier "TIM16" is undefined
+     74              TIM17_IRQHandler               ; TIM17
+                                                      ^
+Error[Pe020]: identifier "TIM17" is undefined
+     75              I2C1_IRQHandler                ; I2C1
+                                                      ^
+Error[Pe020]: identifier "I2C1" is undefined
+     76              I2C2_IRQHandler                ; I2C2
+                                                      ^
+Error[Pe020]: identifier "I2C2" is undefined
+     77              SPI1_IRQHandler                ; SPI1
+                                                      ^
+Error[Pe020]: identifier "SPI1" is undefined
+     78              SPI2_IRQHandler                ; SPI2
+                                                      ^
+Error[Pe020]: identifier "SPI2" is undefined
+     79              USART1_IRQHandler              ; USART1
+                                                      ^
+Error[Pe020]: identifier "USART1" is undefined
+     80              USART2_IRQHandler              ; USART2
+                                                      ^
+Error[Pe020]: identifier "USART2" is undefined
+     81              int_default_handler                             ; Reserved
+                     ^
+Error[Pe159]: declaration is incompatible with previous "int_default_handler"
+          (declared at line 14)
+
+      int_default_handler                             ; Reserved
+                                                        ^
+"D:\Ilya\Projects\332 WS2811 hew year light\IAR\system\startup_stm32f051.@.c",81  Error[Pe020]: 
+          identifier "Reserved" is undefined
+     82              CEC_IRQHandler                 ; CEC
+                                                      ^
+Error[Pe020]: identifier "CEC" is undefined
+     83              int_default_handler                             ; Reserved
+                     ^
+Error[Pe159]: declaration is incompatible with previous "int_default_handler"
+          (declared at line 14)
+
+      int_default_handler                             ; Reserved
+                                                        ^
+"D:\Ilya\Projects\332 WS2811 hew year light\IAR\system\startup_stm32f051.@.c",83  Error[Pe077]: 
+          this declaration has no storage class or type specifier
+     84          
+     85          
+     86          };
+                 ^
+Error[Pe065]: expected a ";"
+     87          
+     88          // This is the code that gets called when the processor first starts execution
+     89          // following a reset event.  Only the absolutely necessary set is performed,
+     90          // after which the application supplied entry() routine is called.  Any fancy
+     91          // actions (such as making decisions based on the reset cause register, and
+     92          // resetting the bits in that register) are left solely in the hands of the
+     93          // application.
+     94          void reset_isr(void)
+     95          {
+     96              //
+     97              // Call the application's entry point.
+     98              //
+     99              __iar_program_start();
+    100          }
+    101          
+    102          // This is the code that gets called when the processor receives a NMI.  This
+    103          // simply enters an infinite loop, preserving the system state for examination
+    104          // by a debugger.
+    105          static void nm_isr(void)
+    106          {
+    107              //
+    108              // Enter an infinite loop.
+    109              //
+    110              while(1)
+    111              {
+    112              }
+    113          }
+    114          
+    115          // This is the code that gets called when the processor receives a fault
+    116          // interrupt.  This simply enters an infinite loop, preserving the system state
+    117          // for examination by a debugger.
+    118          static void fault_isr(void)
+    119          {
+    120              //
+    121              // Enter an infinite loop.
+    122              //
+    123              while(1)
+    124              {
+    125              }
+    126          }
+    127          
+    128          // This is the code that gets called when the processor receives an unexpected
+    129          // interrupt.  This simply enters an infinite loop, preserving the system state
+    130          // for examination by a debugger.
+    131          static void int_default_handler (void)
+                             ^
+Error[Pe147]: declaration is incompatible with "<error-type>
+          int_default_handler" (declared at line 39)
+
+  static void fault_isr(void)
+              ^
+"D:\Ilya\Projects\332 WS2811 hew year light\IAR\system\startup_stm32f051.@.c",118  Warning[Pe177]: 
+          function "fault_isr" was declared but never referenced
+
+  static void int_default_handler(void);
+              ^
+"D:\Ilya\Projects\332 WS2811 hew year light\IAR\system\startup_stm32f051.@.c",14  Warning[Pe177]: 
+          function "int_default_handler" was declared but never referenced
+
+  static void int_default_handler (void)
+              ^
+"D:\Ilya\Projects\332 WS2811 hew year light\IAR\system\startup_stm32f051.@.c",131  Warning[Pe177]: 
+          function "int_default_handler" was declared but never referenced
+    132          {
+    133              //
+    134              // Go into an infinite loop.
+    135              //
+    136              while(1)
+    137              {
+    138              }
+    139          }
+
+Errors: 78
+Warnings: 3
